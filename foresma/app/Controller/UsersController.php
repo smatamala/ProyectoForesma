@@ -27,7 +27,7 @@ class UsersController extends AppController {
 	public function login(){
 		if($this->request->is('post')){
 			if($this->Auth->login()){
-					return $this->redirect($this->Auth->redirectURL('/produccions/index'));
+					return $this->redirect($this->Auth->redirectURL('/users/index'));
 			}
 			$this->Session->setFlash('Usuario y/o contraceña son incorrectos!', 'default',array('class'=>'alert alert-danger'));
 		}
