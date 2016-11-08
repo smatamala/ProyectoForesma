@@ -89,12 +89,13 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '127.0.0.1',
-		'login' => 'simatamala',
-		'password' => '',
-		'database' => 'c8',
+		'host' => 'localhost',
+		'login' => 'foresma',
+		'password' => 'foresma',
+		'database' => 'foresma_bd',
 		'prefix' => '',
 		//'encoding' => 'utf8',
+		
 	);
 
 	public $test = array(

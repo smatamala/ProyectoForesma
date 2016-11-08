@@ -13,7 +13,7 @@
 		<?php foreach($faenas as $k=>$faena):?>
 			<tr>
 				<td><?php echo h($faena['Faena']['nombre']);?></td>
-				<td><?php echo h($faena['Faena']['jefe']);?></td>
+				<td><?php echo h($users[$faena['Faena']['user_id']]);?></td>
 				<td><?php echo h($faena['Faena']['created']);?></td>
 				<td><?php echo h($faena['Faena']['modified']);?></td>
 			</tr>
@@ -31,3 +31,9 @@
 
 		</div> 
 </div>
+<?php if($current_user['role'] == 'adm'){?>
+<pre>
+	<?php print_R($users);?>
+
+</pre>
+<?php } ?>

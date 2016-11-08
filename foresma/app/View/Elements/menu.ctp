@@ -19,12 +19,16 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Lista Usuarios', array('controller' => 'users', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Usuario', array('controller' => 'users', 'action' => 'add')) ?></li>
+                  
                   </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Faenas <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Lista de Faenas', array('controller' => 'faenas', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Faena', array('controller' => 'faenas', 'action' => 'add')) ?></li>
+                  
                   </ul>
               </li>
             <?php endif; ?>

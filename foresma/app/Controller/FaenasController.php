@@ -7,6 +7,8 @@ class FaenasController extends AppController{
 	public function index(){
 		$this->Faena->recursive=0;
 		$this->set('faenas',$this->paginate());
+		$users=$this->Faena->User->find('list',array('order'=>'User.username'));
+		$this->set(compact('users'));
 
 	}
 	public function isAuthorized($user){
@@ -31,7 +33,7 @@ class FaenasController extends AppController{
 			endif;
 		endif;
 		$users=$this->Faena->User->find('list',array('order'=>'User.username'));
-		$this->set(compact('empleados'));
+		$this->set(compact('users'));
 	}
 
 	public function view($id = null){
