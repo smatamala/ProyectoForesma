@@ -74,7 +74,6 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
-	**/
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -85,6 +84,17 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 		
+	);
+	**/
+	public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => '127.0.0.1',
+		'login' => 'simatamala',
+		'password' => '',
+		'database' => 'c8',
+		'prefix' => '',
+		//'encoding' => 'utf8',
 	);
 
 	public $test = array(

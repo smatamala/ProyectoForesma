@@ -2,6 +2,19 @@
 App::uses('BlowfishPasswordHasher','Controller/Component/Auth');
 class Faena extends AppModel{
 	public $displayField='nombre';
+	public $belongsTo= array(
+		'User'=>array(
+			'classname'=>'User',
+			'foreignKey'=>'user_id'),
+		);
+	public $validate=array(
+		'nombre'=>array(
+            'between' => array(//tamaño
+                'rule' => array('between', 3, 25),
+                'message' => 'Entre 3 y 25 caracteres'
+            ))
+
+		);
 
 	public function beforeSave($options=array()){
 		if(isset($this->data[$this->alias]['pass'])):

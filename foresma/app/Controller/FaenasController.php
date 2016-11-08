@@ -30,6 +30,8 @@ class FaenasController extends AppController{
 				$this->redirect(array('action'=>'index'));
 			endif;
 		endif;
+		$users=$this->Faena->User->find('list',array('order'=>'User.username'));
+		$this->set(compact('empleados'));
 	}
 
 	public function view($id = null){
