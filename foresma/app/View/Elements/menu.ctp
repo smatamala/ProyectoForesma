@@ -14,7 +14,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 
-            <?php if($current_user['role'] == 'admin'): ?>
+            <?php if($current_user['role'] == 'admin' || $current_user['role'] == 'root'): ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -28,6 +28,38 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Lista de Faenas', array('controller' => 'faenas', 'action' => 'index')) ?></li>
                   <li><?php echo $this->Html->link('Agregar Faena', array('controller' => 'faenas', 'action' => 'add')) ?></li>
+                  
+                  </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Empleados <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><?php echo $this->Html->link('Lista de Empleados', array('controller' => 'empleados', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Empleado', array('controller' => 'empleados', 'action' => 'add')) ?></li>
+                  
+                  </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maquinas <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><?php echo $this->Html->link('Lista de Maquinas', array('controller' => 'maquinas', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Maquina', array('controller' => 'maquinas', 'action' => 'add')) ?></li>
+                  
+                  </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Insumos <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><?php echo $this->Html->link('Lista de Insumos', array('controller' => 'insumos', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Insumo', array('controller' => 'insumos', 'action' => 'add')) ?></li>
+                  
+                  </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Codigos <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><?php echo $this->Html->link('Lista de Codigos', array('controller' => 'codigos', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Codigo', array('controller' => 'codigos', 'action' => 'add')) ?></li>
                   
                   </ul>
               </li>

@@ -1,8 +1,10 @@
 <div class="col-md-12">
-	<h3>Usuarios</h3>
-	<h2><ul><?php echo $this->Html->link(__('Agregar Usuario'), array('action' => 'add')); ?>
-		</ul> 
-	</h2>
+	<h2>Usuarios</h2>
+	<h3>
+		<ul>
+			<?php echo $this->Html->link(__('Agregar Usuario'), array('action' => 'add'),array('class' => 'btn btn-primary')); ?>
+		</ul>
+	</h3>
 </div>
 
 <div class="col-md-12">
@@ -21,7 +23,6 @@
 			<?php endif; ?>
 	</tr>
 	</thead>
-	<tbody>
 		<?php foreach ($users as $user): ?>
 			<tr>
 			<!--<td><?php echo h($user['User']['id']); ?>&nbsp;</td>-->
@@ -40,10 +41,21 @@
 
 			</tr>
 		<?php endforeach; ?>
-	</tbody>
 	</table>
+	<p>	<?php echo $this->Paginator->counter(array(
+			'format' => __('Pagina {:page} de {:pages}, mostrando {:current} de {:count} en total, 
+					empezando del {:start}, al {:end}')));?>	
+	</p>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('< anterior',array(),null,array('class'=>'prev disabled'));?>
+		<?php echo $this->Paginator->numbers(array('separator'=>''));?>
+		<?php echo $this->Paginator->next('siguiente >',array(),null,array('class'=>'next disabled'));?>
+
+		</div> 
 </div>
 	
+<?php if($current_user['role'] == 'root'){?>
 <pre>
 	<?php print_R($users);?>
 </pre>
+<?php } ?>

@@ -1,8 +1,8 @@
 <div class="col-md-12">
-	<h2>Faenas</h2>
+	<h2>Maquinas</h2>
 	<h3>
 		<ul>
-			<?php echo $this->Html->link(__('Agregar Faena'), array('action' => 'add'),array('class' => 'btn btn-primary')); ?>
+			<?php echo $this->Html->link(__('Agregar Maquina'), array('action' => 'add'),array('class' => 'btn btn-primary')); ?>
 		</ul> 
 	</h3>
 </div>
@@ -13,17 +13,17 @@
 	<thead>
 		<tr>
 			<th><?php echo $this->Paginator->sort('Nombre ')?></th>
-			<th><?php echo $this->Paginator->sort('Jefe')?></th>
-			<th><?php echo $this->Paginator->sort('Creado')?></th>
+			<th><?php echo $this->Paginator->sort('Año')?></th>
+			<th><?php echo $this->Paginator->sort('descripcion')?></th>
 			<th><?php echo $this->Paginator->sort('Modificado')?></th>
 		</tr>
 	</thead>
-		<?php foreach($faenas as $k=>$faena):?>
+		<?php foreach($maquinas as $k=>$maquina):?>
 			<tr>
-				<td><?php echo h($faena['Faena']['nombre']);?></td>
-				<td><?php echo h($users[$faena['Faena']['user_id']]);?></td>
-				<td><?php echo h($faena['Faena']['created']);?></td>
-				<td><?php echo h($faena['Faena']['modified']);?></td>
+				<td><?php echo h($maquina['Maquina']['nombre']);?></td>
+				<td><?php echo h($maquina['Maquina']['ano']);?></td>
+				<td><?php echo h($maquina['Maquina']['descripcion']);?></td>
+				<td><?php echo h($maquina['Maquina']['modified']);?></td>
 			</tr>
 			<?php endforeach;?>
 	</table>
@@ -40,7 +40,7 @@
 </div>
 <?php if($current_user['role'] == 'root'){?>
 <pre>
-	<?php print_R($faenas);?>
+	<?php print_R($maquinas);?>
 
 </pre>
 <?php } ?>
