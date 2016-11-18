@@ -9,11 +9,11 @@ class Maquina extends AppModel {
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 			),
+		),
 		'ano' => array(
         'rule' => array('range', 1950, 2017),
         'message' => 'Por favor el año tiene que ser entre 1950 y 2017'
     )
-		)
 	);
 
 
