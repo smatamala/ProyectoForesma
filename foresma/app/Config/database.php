@@ -86,6 +86,18 @@ class DATABASE_CONFIG {
 		
 	);
 	**/
+	public $test = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'foresma',
+		'password' => 'foresma',
+		'database' => 'foresma_bd',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+		
+	);
+
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -93,17 +105,6 @@ class DATABASE_CONFIG {
 		'login' => 'simatamala',
 		'password' => '',
 		'database' => 'c8',
-		'prefix' => '',
-		//'encoding' => 'utf8',
-	);
-
-	public $test = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
