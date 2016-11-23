@@ -65,6 +65,5 @@
 <?php if($current_user['role'] == 'admin'){?>
 <pre>
 	<?php print_R($produccion);?>
-	<?php print_R($codigos);?>
 </pre>
 <?php } ?>
