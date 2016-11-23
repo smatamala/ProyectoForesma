@@ -7,7 +7,7 @@ App::uses('AppModel', 'Model');
  */
 class Codigo extends AppModel {
 
-	public $displayField = 'nombre';
+	public $displayField = 'codigo';
 
 	
 	

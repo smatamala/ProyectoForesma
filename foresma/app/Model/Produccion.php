@@ -9,5 +9,26 @@ class Produccion extends AppModel{
 		endif;
 		return true;
 	}
+	
+	public $belongsTo= array(
+			'Empleado'=> array(
+				'className'=>'Empleado',
+				'foreignKey'=>'empleado_id'),
+
+			'Maquina'=> array(
+				'className'=>'Maquina',
+				'foreignKey'=>'maquina_id'),
+
+			'Faena'=> array(
+				'className'=>'Faena',
+				'foreignKey'=>'faena_id'
+				),
+			'Codigo'=> array(
+				'className'=>'Codigo',
+				'foreignKey'=>'codigo_id'),
+			'Insumo'=> array(
+				'className'=>'Insumo',
+				'foreignKey'=>'insumo_id'),
+		);
 
 }
