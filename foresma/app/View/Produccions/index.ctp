@@ -1,5 +1,5 @@
 <div class="col-md-12">
-	<h2>Producciones</h2>
+	<h2>Producciones hasta el <?php echo date('d/m/y')?></h2>
 	<h3>
 		<ul>
 			<?php echo $this->Html->link(__('Agregar Produccion'), array('action' => 'add'),array('class' => 'btn btn-primary')); ?>
@@ -25,30 +25,25 @@
 		<?php foreach($produccions as $k=>$produccion):?>
 			<tr>
     			<td>
-    			    <?php echo $this->Html->link($produccion['Produccion']['id']);?>
+    			    <?php echo $produccion['Produccion']['id'];?>
     			</td>
     			<td>
-    			    <?php echo $this->Html->link($this->Time->format('d/m/y'));?>
+    			    <?php echo $this->Time->format('d/m/y',$produccion['Produccion']['dia']);?>
     			</td>
     			<td>
-    			    <?php echo $this->Html->link($produccion['Empleado']['nombre'],array(
-    			        'controller' =>'empleados','action'=> 'view',$produccion['Empleado']['id']));?>
+    			    <?php echo $produccion['Empleado']['nombre'];?>
     			</td>
     			<td>
-        			<?php echo $this->Html->link($produccion['Maquina']['nombre'],array(
-        			    'controller' =>'maquinas','action'=> 'view',$produccion['Maquina']['id']));?>
+        			<?php echo $produccion['Maquina']['nombre'];?>
     			</td>
     			<td>
-    			    <?php echo $this->Html->link($produccion['Faena']['nombre'],array(
-    			        'controller' =>'faenas','action'=> 'view',$produccion['Faena']['id']));?>
+    			    <?php echo $produccion['Faena']['nombre'];?>
     			</td>
     			<td>
-    			    <?php echo $this->Html->link($produccion['Codigo']['nombre'],array(
-    			        'controller' =>'codigos','action'=> 'view',$produccion['Codigo']['id']));?>
+    			    <?php echo $produccion['Codigo']['codigo'];?>
     			</td>
     			<td>
-    			    <?php echo $this->Html->link($produccion['Insumo']['nombre'],array(
-    			        'controller' =>'insumos','action'=> 'view',$produccion['Insumo']['id']));?>
+    			    <?php echo $produccion['Insumo']['nombre'];?>
     			</td>
     			<td>
     			    <?php echo $this->Time->format('d/m/y h:i:s',$produccion['Produccion']['modified']);?>
@@ -67,9 +62,9 @@
 
 		</div> 
 </div>
-<?php if($current_user['role'] == 'root'){?>
+<?php if($current_user['role'] == 'admin'){?>
 <pre>
-	<?php print_R($produccions);?>
+	<?php print_R($produccion);?>
 	<?php print_R($codigos);?>
 </pre>
 <?php } ?>

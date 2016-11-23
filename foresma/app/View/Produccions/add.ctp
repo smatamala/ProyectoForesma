@@ -1,6 +1,5 @@
 <div class="add">
 	<?php 
-	$empleado=null;
 	echo $this->Form->create('Produccion');
 	?>
 	<fieldset>
@@ -27,7 +26,8 @@
 				        'label' =>'Fecha',
 				        'dateFormat' => 'DMY',
 				        'monthNames' => $meses,
-				        'minYear' => date('Y') - 70,
+				        'minYear' => date('Y') - 5,
+				        'maxYear' => date('Y') + 5,
 				        'div' => array('class' => 'form-inline'),
 				        'between' => '<div class="form-group">',
 				        'separator' => '</div><div class="form-group">',
