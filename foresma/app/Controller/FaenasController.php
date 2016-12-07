@@ -12,8 +12,8 @@ class FaenasController extends AppController{
 
 	}
 	public function isAuthorized($user){
-			if($user['role']=='admin'){
-				if(in_array($this->action,array('add','index','view'))){
+			if($user['role']=='user'){
+				if(in_array($this->action,array('index','view'))){
 					return true;
 				}
 				else{
@@ -36,19 +36,25 @@ class FaenasController extends AppController{
 		$this->set(compact('users'));
 	}
 
+
 	public function view($id = null){
-		if (!$id)
-		{
-			throw new NotFoundException('Datos Invalidos');
+		if (!$id){
+			$this->Session->setFlash(__('Datos invalidos'));
+			$this->redirect(array('action'=>'index'));
 		}
 		$faena = $this->Faena->findById($id);
 
-		if (!$faena)
-		{
-			throw new NotFoundException('La faena no existe');
+		if (!$faena){
+			$this->Session->setFlash(__('La faena no existe'));
+			$this->redirect(array('action'=>'index'));
 		}
 
 		$this->set('faena', $faena);
+		$this->loadModel('Empleado');
+		$empleados=$this->Empleado->find('all');
+		$this->set('empleados',$empleados);
+		
+		
 	}
 	
 

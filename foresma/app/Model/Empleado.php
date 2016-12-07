@@ -4,7 +4,12 @@ App::uses('AppModel', 'Model');
 
 class Empleado extends AppModel{
 	public $displayField='nombre';
-
+	public $hasMany= array(
+			'Produccion'=> array(
+				'className'=>'Produccion',
+				'foreignKey'=>'empleado_id',
+				'dependent' => true)
+		); 
 	public $validate=array(
 		'nombre' => array('rule' => 'notEmpty', 
 				         'message' =>'Debe ingresar un nombre'

@@ -7,6 +7,13 @@ class Faena extends AppModel{
 			'classname'=>'User',
 			'foreignKey'=>'user_id'),
 		);
+		public $hasMany= array(
+			'Produccion'=> array(
+				'className'=>'Produccion',
+				'foreignKey'=>'faena_id',
+				'dependent' => true
+				)
+		);
 	public $validate=array(
 		'nombre'=>array(
             'between' => array(//tamaño

@@ -78,6 +78,44 @@ class ProduccionsController extends AppController{
 		$this->set(compact('empleados'));
 	}
 	
+	public function view($id = null){
+		if (!$id){
+			throw new NotFoundException('Datos Invalidos');
+		}
+		$produccion = $this->Produccion->findById($id);
+
+		if (!$produccion){
+			throw new NotFoundException('La produccion no existe');
+		}
+		$this->set('produccion', $produccion);
+		$this->loadModel('Empleado');
+		$empleado=$this->Empleado->find('all');
+		$this->set('empleado', $empleado);
+		
+	}
+	
+	public function delete($id = null,$username = null) {
+		function write_log($cadena){
+			$arch = fopen("../../logs/deletes".".txt", "a+"); //date("Y-m-d"). define hora en archivo
+		
+			fwrite($arch, "[".date("Y-m-d H:i:s")." ".$_SERVER['REMOTE_ADDR']." "." - Elimino produccion ] ".$cadena."\n");
+			fclose($arch);
+		}
+		$this->Produccion->id = $id;
+		if (!$this->Produccion->exists()) {
+			$this->Session->setFlash(__('Produccion invalida, No Existe!'));
+			return $this->redirect(array('action' => 'index'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Produccion->delete()) {
+			$this->Session->setFlash(__('La Produccion a sido eliminada correctamente.'));
+			write_log("usuario:". $username . " elimino: ".$id." ");
+		} else {
+			$this->Session->setFlash(__('La Produccion no se pudo eliminar, Vuelva a intentarlo!.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+	
 	
 	
 }

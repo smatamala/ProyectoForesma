@@ -20,7 +20,9 @@
 	</thead>
 		<?php foreach($faenas as $k=>$faena):?>
 			<tr>
-				<td><?php echo h($faena['Faena']['nombre']);?></td>
+				<td><?php echo $this->Html->link($faena['Faena']['nombre'],array('controller' =>'faenas',
+											'action'=> 'view',
+										 	$faena['Faena']['id']));?></td>
 				<td><?php echo h($users[$faena['Faena']['user_id']]);?></td>
 				<td><?php echo h($faena['Faena']['created']);?></td>
 				<td><?php echo h($faena['Faena']['modified']);?></td>

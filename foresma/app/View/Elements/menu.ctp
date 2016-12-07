@@ -8,13 +8,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <?php echo $this->Html->link('ForesmaControl', array('controller' => 'users', 'action' => 'login'), array('class' => 'navbar-brand' )); ?>
+          <?php echo $this->Html->link('FCtrl', array('controller' => 'users', 'action' => 'login'), array('class' => 'navbar-brand' )); ?>
 
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 
-            <?php if($current_user['role'] == 'admin' || $current_user['role'] == 'root'): ?>
+            <?php if($current_user['role'] == 'admin' || $current_user['role'] == 'root'){ ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -23,6 +23,8 @@
                   
                   </ul>
               </li>
+              <?php } ?>
+              <?php if($current_user['role'] == 'admin' || $current_user['role'] == 'root'|| $current_user['role'] == 'user'|| $current_user['role'] == 'view'){ ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Faenas <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -48,22 +50,25 @@
                   </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Insumos <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Insumos y codigos <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Lista de Insumos', array('controller' => 'insumos', 'action' => 'index')) ?></li>
                   <li><?php echo $this->Html->link('Agregar Insumo', array('controller' => 'insumos', 'action' => 'add')) ?></li>
-                  
-                  </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Codigos <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Lista de Codigos', array('controller' => 'codigos', 'action' => 'index')) ?></li>
                   <li><?php echo $this->Html->link('Agregar Codigo', array('controller' => 'codigos', 'action' => 'add')) ?></li>
                   
                   </ul>
               </li>
-            <?php endif; ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Producciones <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><?php echo $this->Html->link('Resumen', array('controller' => 'produccions', 'action' => 'dashboard')) ?></li>
+                  <li><?php echo $this->Html->link('Lista de Producciones', array('controller' => 'produccions', 'action' => 'index')) ?></li>
+                  <li><?php echo $this->Html->link('Agregar Produccion', array('controller' => 'produccions', 'action' => 'add')) ?></li>
+                  
+                  </ul>
+              </li>
+            <?php } ?>
 
 
           </ul>

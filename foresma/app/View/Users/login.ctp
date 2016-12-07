@@ -1,9 +1,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-head">
-            <?php if($current_user['role'] == 'admin'||$current_user['role'] == 'root'){
+            <?php if($current_user['role'] == 'admin'||$current_user['role'] == 'root'||$current_user['role'] == 'view'){
                 echo $this->Html->link('Foresma Usuario: '.($current_user['username']), 
                     array('controller' => 'users', 'action' => 'index'), array('class' => 'navbar-brand'));
+            }
+            elseif($current_user['role'] == 'user'){
+                echo $this->Html->link('Foresma Usuario: '.($current_user['username']), 
+                    array('controller' => 'produccions', 'action' => 'index'), array('class' => 'navbar-brand'));
             }
             ?>
         <?php if($current_user == null): ?>

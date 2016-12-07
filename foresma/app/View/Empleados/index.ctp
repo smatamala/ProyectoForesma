@@ -23,7 +23,9 @@
 		<?php foreach($empleados as $k=>$empleado){ ?>
 			<tr>
 				<td><?php echo h($empleado['Empleado']['rut']);?></td>
-				<td><?php echo h($empleado['Empleado']['nombre']);?></td>
+				<td><?php echo $this->Html->link($empleado['Empleado']['nombre'],array('controller' =>'empleados',
+											'action'=> 'view',
+										 	$empleado['Empleado']['id']));?></td>
 				<td><?php echo h($empleado['Empleado']['tel']);?></td>
 				<td><?php echo h($empleado['Empleado']['especialidad']);?></td>
 				<td><?php echo h($empleado['Empleado']['modified']);?></td>

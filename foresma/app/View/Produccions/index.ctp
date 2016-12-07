@@ -24,9 +24,9 @@
 	</thead>
 		<?php foreach($produccions as $k=>$produccion):?>
 			<tr>
-    			<td>
-    			    <?php echo $produccion['Produccion']['id'];?>
-    			</td>
+    			<td><?php echo $this->Html->link(
+    				$produccion['Produccion']['id'],array(
+    					'controller' =>'produccions','action'=> 'view',$produccion['Produccion']['id']));?></td>
     			<td>
     			    <?php echo $this->Time->format('d/m/y',$produccion['Produccion']['dia']);?>
     			</td>
@@ -62,8 +62,9 @@
 
 		</div> 
 </div>
-<?php if($current_user['role'] == 'admin'){?>
+<?php if($current_user['role'] == 'root'){?>
 <pre>
 	<?php print_R($produccion);?>
+	<?php print_R($current_user['username']);?>
 </pre>
 <?php } ?>

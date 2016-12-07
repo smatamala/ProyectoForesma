@@ -27,13 +27,35 @@ class UsersController extends AppController {
 	public function login(){
 		if($this->request->is('post')){
 			if($this->Auth->login()){
-					return $this->redirect($this->Auth->redirectURL('/users/index'));
+					return $this->redirect($this->Auth->redirectURL('/produccions/index'));
 			}
 			$this->Session->setFlash('Usuario y/o contraceña son incorrectos!', 'default',array('class'=>'alert alert-danger'));
 		}
 	}
 	public function logout(){
 		return $this->redirect($this->Auth->logout());
+	}
+	
+	public function isAuthorized($user=null){
+		if($user['role']=='user'){
+			if(in_array($this->action,array())){
+				return true;
+			}
+			else{
+				$this->Session->setFlash('No puede acceder, NO TIENES PERMISOS!', 'default', array('class'=>'alert alert-danger'));
+				$this->redirect(array('controller' =>'produccions','action'=>'index'));
+				}
+			}
+		if($user['role']=='view'){
+			if(in_array($this->action,array('index','view'))){
+				return true;
+			}
+			else{
+				$this->Session->setFlash('No puede acceder, NO TIENES PERMISOS!', 'default', array('class'=>'alert alert-danger'));
+				$this->redirect(array('controller' =>'produccions','action'=>'index'));
+				}
+			}
+		return parent::isAuthorized($user);
 	}
 
 /**

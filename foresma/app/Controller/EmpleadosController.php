@@ -38,5 +38,22 @@ class EmpleadosController extends AppController{
 			}
 		}
 	}
+	public function view($id = null){
+		if (!$id)
+		{
+			throw new NotFoundException('Datos Invalidos');
+		}
+		$empleado = $this->Empleado->findById($id);
+		$this->loadModel('Faena');
+		$faenas= $this->Faena->find('list');
+		if (!$empleado)
+		{
+			throw new NotFoundException('El empleado no existe');
+		}
+
+		$this->set('empleado', $empleado,$this->Paginator->paginate());
+		$this->set('faenas',$faenas);
+		$this->set('id',$id);
+	}
 }
 ?>

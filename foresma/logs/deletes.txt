@@ -1,0 +1,5 @@
+[2016-12-07 03:59:50 10.240.1.64  - Delete Produccion ] elimino: 3 
+[2016-12-07 04:02:55 10.240.1.17  - Elimino produccion ] usuario: elimino: 6 
+[2016-12-07 04:05:50 10.240.0.207  - Elimino produccion ] usuario: elimino: 5 
+[2016-12-07 04:07:12 10.240.0.110  - Elimino produccion ] usuario: elimino: 7 
+[2016-12-07 04:08:28 10.240.0.206  - Elimino produccion ] usuario:admin elimino: 8 
