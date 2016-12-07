@@ -64,9 +64,18 @@ class ProduccionsController extends AppController{
 		$this->loadModel('Insumo');
 		$insumos=$this->Insumo->find('list',array('order'=>'Insumo.nombre'));
 		$this->set('insumos',$insumos);
-		
-		
-
+	}
+	
+	public function dashboard(){
+        $this->Paginator->settings = $this->paginate;
+		$this->Produccion->recursive=0;
+		$this->set('produccions',$this->Paginator->paginate());
+		$this->loadModel('Faena');
+		$faenas=$this->Faena->find('all',array('order'=>'Faena.nombre'));
+		$this->set(compact('faenas'));
+		$this->loadModel('Empleado');
+		$empleados=$this->Produccion->Empleado->find('all',array('order'=>'Empleado.nombre'));
+		$this->set(compact('empleados'));
 	}
 	
 	
