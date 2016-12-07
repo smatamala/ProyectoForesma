@@ -73,3 +73,51 @@ $meses = array(
 			</tr>
 	</table>
 </div>
+
+<?php
+$ftt=0;
+$fdt=0;
+$fcct=0;
+$et=0;
+$ed=0;
+$ett=0;
+$edt=0;
+?>
+<div class="col-md-6">
+    <h2>Empleados</h2>
+	<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th><?php echo 'Empleado'?></th>	
+			<th><?php echo 'Trozado'?></th>	
+			<th><?php echo 'Descortezado'?></th>
+		</tr>
+	</thead>
+	<?php foreach($empleados as $k=>$empleado){
+		    foreach($produccions as $k=>$produccion){
+		        if($fecha==$this->Time->format('m/y',$produccion['Produccion']['dia'])){
+			    if ($produccion['Produccion']['empleado_id']==$empleado['Empleado']['id']){
+			        $et=$et+ $produccion['Produccion']['p_trozado'];
+			        $ed=$ed+ $produccion['Produccion']['p_descortezado'];
+			    }
+			
+			}}?>
+			<tr>
+			    <td><?php echo $empleado['Empleado']['nombre']  ?></td>
+				<td><?php echo $et;?></td>
+				<td><?php echo $ed;?></td>
+			</tr>
+			
+			<?php
+			$ett=$ett+$et;
+            $edt=$edt+$ed;
+			$et=0;
+            $ed=0;
+            } ?>
+            <tr>
+			    <th><?php echo 'Totales'  ?></th>
+				<th><?php echo $ett;?></th>
+				<th><?php echo $edt;?></th>
+			</tr>
+	</table>
+</div>
