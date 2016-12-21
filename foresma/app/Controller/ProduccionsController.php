@@ -88,9 +88,9 @@ class ProduccionsController extends AppController{
 			throw new NotFoundException('La produccion no existe');
 		}
 		$this->set('produccion', $produccion);
-		$this->loadModel('Empleado');
-		$empleado=$this->Empleado->find('all');
-		$this->set('empleado', $empleado);
+		$this->loadModel('User');
+		$user=$this->User->find('all');
+		$this->set('user', $user);
 		
 	}
 	
@@ -114,6 +114,31 @@ class ProduccionsController extends AppController{
 			$this->Session->setFlash(__('La Produccion no se pudo eliminar, Vuelva a intentarlo!.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+	
+	public function edit($id = null) {
+		if (!$this->Produccion->exists($id)) {
+			throw new NotFoundException(__('Invalid Produccion'));
+		}
+		$produccion = $this->Produccion->findById($id);
+		$this->set('produccion', $produccion);
+		$this->Produccion->id=$id;
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Produccion->read();
+			
+		}
+		
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Produccion->save($this->request->data)) {
+				$this->Session->setFlash(__('La Produccion a sido guardada.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('La Produccion no pudo ser guardada correctamente. Vuelva a intentarlo!.'));
+			}
+		} else {
+			$options = array('conditions' => array('Produccion.' . $this->Produccion->primaryKey => $id));
+			$this->request->data = $this->Produccion->find('first', $options);
+		}
 	}
 	
 	

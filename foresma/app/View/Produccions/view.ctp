@@ -1,16 +1,18 @@
 <div class="col-md-20">
 <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', 
-											$produccion['Produccion']['id'],$current_user['username']), array('class' => 'btn btn-sm btn-danger'),
-													__('Estas seguro de eliminar la Faena: %s?', $produccion['Produccion']['id'])); ?>
+											$produccion['Produccion']['id'],$current_user['username']), array('class' => 'btn btn-danger'),
+													__('Estas seguro de eliminar la Faena: %s?', $produccion['Produccion']['id']));
+		echo "  ";
+		echo $this->Html->link(__('Editar'), array('action' => 'edit',$produccion['Produccion']['id']),array('class' => 'btn btn-success')); ?>
 <h2>Detalle de la Produccion </h2>
 <h4><strong>Id: </strong><?php echo $produccion['Produccion']['id']; ?></h4>
 <h4><strong>Empleado: </strong><?php echo $produccion['Empleado']['nombre']; ?></h3>
 <h4><strong>Faena: </strong><?php echo $produccion['Faena']['nombre']; ?></h3>
 
 <td><h4><strong>Jefe faena: </strong>
-            <?php foreach($empleado as $fa):
-   				 if($fa['Empleado']['id'] == $produccion['Faena']['user_id']){
-       				echo $fa['Empleado']['nombre'];}?>
+            <?php foreach($user as $fa):
+   				 if($fa['User']['id'] == $produccion['Faena']['user_id']){
+       				echo $fa['User']['username'];}?>
 				<?php endforeach;?></td>
 
 <!--<h4><strong>Jefe: </strong><?php echo $produccion['Faena']['empleado_id']; ?></h3>-->
