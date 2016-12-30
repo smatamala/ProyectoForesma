@@ -229,7 +229,7 @@ $ed=0;
 <?php 
 $ett=0;
 $edt=0;
-			$mes=$mes-2;
+			$mes=$mes-1;
 			if($mes==0){
 			    $mes=12;
 			    $ano=$ano-1;

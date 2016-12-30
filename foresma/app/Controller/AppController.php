@@ -24,7 +24,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components= array(
 		'Session',
-		'Auth'=>array(
+		'Auth'=>array(//funciones de loggin para permitir acceso
 			'loginRedirect'=>array(
 				'controller'=>'users',
 				'action'=>'index'
@@ -43,13 +43,13 @@ class AppController extends Controller {
 		)
 	);
 
-	public function beforeFilter(){
+	public function beforeFilter(){//setea al usuario como user del sistema
 		$this->Auth->allow('login','logout');
 		$this->set('current_user',$this->Auth->user());
 
 	}
 
-	public function isAuthorized($user){
+	public function isAuthorized($user){//autoriza a usuario de tipo admin a todas las funciones del sistema
 		if( isset($user['role']) && ($user['role']==='admin'||$user['role']==='root')){
 			return true;
 		}

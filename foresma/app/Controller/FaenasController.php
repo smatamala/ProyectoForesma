@@ -4,14 +4,14 @@ class FaenasController extends AppController{
 		'limit'=> 10,
 		'order' => array('Faena.id'=>'asc')
 		);
-	public function index(){
+	public function index(){//funcion para acceder a index.ctp que trae lista de empleados desde la bd
 		$this->Faena->recursive=0;
 		$this->set('faenas',$this->paginate());
 		$users=$this->Faena->User->find('list',array('order'=>'User.username'));
 		$this->set(compact('users'));
 
 	}
-	public function isAuthorized($user){
+	public function isAuthorized($user){//solo permite al usuario de tipo user acceder a index y view
 			if($user['role']=='user'){
 				if(in_array($this->action,array('index','view'))){
 					return true;
@@ -25,7 +25,7 @@ class FaenasController extends AppController{
 			}
 			return parent::isAuthorized($user);
 		}
-	public function add(){
+	public function add(){//funcion para acceder a add.ctp 
 		if($this->request->is('post')):
 			if($this->Faena->save($this->request->data)):
 				$this->Session->setFlash('Faena guardado');
@@ -37,7 +37,7 @@ class FaenasController extends AppController{
 	}
 
 
-	public function view($id = null){
+	public function view($id = null){//funcion para acceder a view.ctp
 		if (!$id){
 			$this->Session->setFlash(__('Datos invalidos'));
 			$this->redirect(array('action'=>'index'));

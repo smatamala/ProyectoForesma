@@ -32,4 +32,5 @@ class Empleado extends AppModel{
 
 		)
 );
+
 }

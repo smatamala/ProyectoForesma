@@ -11,7 +11,7 @@ class CodigosController extends AppController {
 
 	public $components = array('Paginator', 'Session');
 
- 	public function isAuthorized($user=null){
+ 	public function isAuthorized($user=null){//solo permite al usuario de tipo user acceder a index y view
 		if($user['role']=='user'){
 			if(in_array($this->action,array('index','view'))){
 				return true;
@@ -25,15 +25,15 @@ class CodigosController extends AppController {
 		return parent::isAuthorized($user);
 	}
 		
-	public function index() {
+	public function index() {//funcion que permite acceso a index.ctp
 		$this->Codigo->recursive = 0;
 		$this->set('codigos', $this->Paginator->paginate());
 	}
 	
-		public function add() {
+		public function add() {//funcion que permite acceso a add.ctp
 		if ($this->request->is('post')) {
 			$this->Codigo->create();
-			if ($this->Codigo->save($this->request->data)) {
+			if ($this->Codigo->save($this->request->data)) {//si es posible almacenar en bd confirma 
 				$this->Session->setFlash(__('El Codigo a sido guardado.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {

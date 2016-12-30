@@ -8,7 +8,7 @@ class EmpleadosController extends AppController{
 		'order' => array('Empleado.nombre'=>'asc'),
 		);
 		
-	public function isAuthorized($user=null){
+	public function isAuthorized($user=null){//solo permite al usuario de tipo user acceder a index y view
 		if($user['role']=='user'){
 			if(in_array($this->action,array('index','view'))){
 				return true;
@@ -21,13 +21,13 @@ class EmpleadosController extends AppController{
 		return parent::isAuthorized($user);
 	}
 
-	public function index(){
+	public function index(){//funcion para acceder a index.ctp que trae lista de empleados desde la bd
 		$this->Paginator->settings = $this->paginate;
 		$this->Empleado->recursive=0;
 		$this->set('empleados', $this->Paginator->paginate());
 
 	}
-	public function add() {
+	public function add() {//funcion para acceder a add.ctp 
 		if ($this->request->is('post')) {
 			$this->Empleado->create();
 			if ($this->Empleado->save($this->request->data)) {
@@ -38,7 +38,7 @@ class EmpleadosController extends AppController{
 			}
 		}
 	}
-	public function view($id = null){
+	public function view($id = null){// permite acceso a la vista de los empleados donde se muestra la info de un empleados espesifico
 		if (!$id)
 		{
 			throw new NotFoundException('Datos Invalidos');

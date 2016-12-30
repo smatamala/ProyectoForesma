@@ -30,5 +30,14 @@ class Produccion extends AppModel{
 				'className'=>'Insumo',
 				'foreignKey'=>'insumo_id'),
 		);
+		
+		public $validate=array(
+		'dia' => array(
+            'rule' => 'date',
+            'message' => 'Ingrese una fecha válida',
+            'allowEmpty' => true
+        )
+);
+
 
 }
