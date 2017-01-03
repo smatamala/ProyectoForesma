@@ -19,7 +19,7 @@
 			<th><?php echo $this->Paginator->sort('Modificado'); ?></th>
 
 			<?php if($current_user['role'] == 'admin'):?>
-				<th class="actions"><?php echo __('Actions'); ?></th>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
 			<?php endif; ?>
 	</tr>
 	</thead>
@@ -33,7 +33,6 @@
 
 				<?php if($current_user['role'] == 'admin'):?>
 					<td class="actions">
-						<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $user['User']['id']), array('class' => 'btn btn-sm btn-default')); ?>
 						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-sm btn-default')); ?>
 						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-sm btn-default'), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 					</td>

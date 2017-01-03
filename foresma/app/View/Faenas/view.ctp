@@ -62,7 +62,7 @@
 <?php
 	//echo $this->Html->link('Volver a lista de producciones', array('controller' => 'produccions', 'action'=> 'index'));
 ?>
-<?php if($current_user['role'] == true){?>
+<?php if($current_user['role'] == 'root'){?>
 <pre>
 	<?php print_R($faena);?>
 	<?php print_R($produccion);?>
