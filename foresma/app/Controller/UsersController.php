@@ -146,8 +146,8 @@ class UsersController extends AppController {
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if ($id==2) {
-			throw new NotFoundException(__('Invalid user'));
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este administrador, contacta al programador!! '));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->User->delete()) {
