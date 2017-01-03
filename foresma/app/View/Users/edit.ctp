@@ -5,7 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('username', array('class' => 'form-control', 'label' => 'Usuario'));
-	?>
+		echo $this->Form->input('password', array('class' => 'form-control', 'label' => 'Contraseña ->Ingrese la contraseña nuevamente','value'=>' '));
+		echo $this->Form->input('role', array('class' => 'form-control', 'label' => 'Permisos', 'type' => 'select', 'options' => array('admin' => 'Administrador', 'user' => 'Jefe de Faena','view'=>'Administración General'), array('class' => 'form-control')));?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

@@ -73,7 +73,7 @@ class DATABASE_CONFIG {
 		'database' => 'c8',
 		'prefix' => '',
 		//'encoding' => 'utf8',
-	);	**/
+	);
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -84,7 +84,7 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 		
-	);
+	);	**/
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',
@@ -97,7 +97,7 @@ class DATABASE_CONFIG {
 		//'encoding' => 'utf8',
 		
 	);
-/**
+
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -107,5 +107,5 @@ class DATABASE_CONFIG {
 		'database' => 'c8',
 		'prefix' => '',
 		//'encoding' => 'utf8',
-	);**/
+	);
 }

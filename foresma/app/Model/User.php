@@ -28,7 +28,7 @@ class User extends AppModel {
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Contraseña en blanco',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
