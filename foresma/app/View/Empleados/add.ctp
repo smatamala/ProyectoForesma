@@ -1,4 +1,6 @@
-<div class="add">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
 	<?php echo $this->Form->create('Empleado');?>
 
 
@@ -13,4 +15,6 @@
 
 	</fieldset>
 	<?php echo $this->Form->end('Guardar Empleado',array('class' => 'form-control'));?>
+</div>
+</div>
 </div>

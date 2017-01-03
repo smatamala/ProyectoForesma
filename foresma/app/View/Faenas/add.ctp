@@ -1,4 +1,6 @@
-<div class="add">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
 	<?php echo $this->Form->create('Faena', array('role' => 'form')); ?>
 	<fieldset>
 		<legend>Agregar Faena</legend>
@@ -7,6 +9,8 @@
 		<?php //*echo $this->Form->input('ayudante', array('class' => 'form-control', 'label' => 'Jefe de faena 2'));*//?>
 	</fieldset>
 	<?php echo $this->Form->end('Guardar Faena');?>
+</div>
+</div>
 </div>
 <?php if($current_user['role'] == 'root'){?>
 <pre>

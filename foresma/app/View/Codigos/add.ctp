@@ -1,4 +1,6 @@
-<div class="add">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
 	<?php echo $this->Form->create('Codigo', array('role' => 'form')); ?>
 	<fieldset>
 		<legend>Agregar Codigo</legend>

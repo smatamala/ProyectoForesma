@@ -3,7 +3,7 @@
 		<div class="col-md-6">
 			<?php echo $this->Form->create('User', array('role' => 'form')); ?>
 				<fieldset>
-					<h2><?php echo __('Nuevo Usuario'); ?></h2>
+					<legend>Agregar Ususario</legend>
 				<?php
 					echo $this->Form->input('username', array('class' => 'form-control', 'label' => 'Usuario'));
 					echo $this->Form->input('password', array('class' => 'form-control', 'label' => 'Contraseña'));
