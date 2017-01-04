@@ -47,7 +47,7 @@ class ProduccionsController extends AppController{
 		$maquinas=$this->Produccion->Maquina->find('list',array('order'=>'Maquina.nombre'));
 		$this->set(compact('maquinas'));
 		$this->loadModel('Faena');
-		$filtrofaena=array('conditions' => array('Faena.user_id' => $id),'order'=>'Faena.nombre');
+		$filtrofaena=array('conditions' => array('Faena.user_id' => $id),'order'=>'Faena.nombre');//muestar faenas que pertenecen a usuario
 		$faenas=$this->Faena->find('list',$filtrofaena);
 		$this->set(compact('faenas'));
 
@@ -59,16 +59,19 @@ class ProduccionsController extends AppController{
 		$insumos=$this->Insumo->find('list',array('order'=>'Insumo.nombre'));
 		$this->set('insumos',$insumos);
 		
-		if($this->request->is('post')):
-
-			if($this->Produccion->save($this->request->data)):
-				$this->Session->setFlash('Produccion agregada');
-				$this->redirect(array('action'=>'index'));
-			endif;
-		endif;
-		
-		
-	}
+		if($this->request->is('post')){
+			$faenaid=array('conditions' => array('Faena.id' => $this->request->data['Produccion']['faena_id'],'Faena.user_id'=>$id));
+			if($this->Faena->find('list',$faenaid)){
+				if($this->Produccion->save($this->request->data)){
+					$this->Session->setFlash('Produccion agregada');
+					$this->redirect(array('action'=>'index'));
+				}
+			} else {
+					$this->Session->setFlash(__('Error!!..Estas intentando cambiar parametros del formulario. ¬¬'));
+				}
+				return $this->redirect(array('action' => 'index'));
+				
+			}}
 	
 	public function dashboard(){
         $this->Paginator->settings = $this->paginate;

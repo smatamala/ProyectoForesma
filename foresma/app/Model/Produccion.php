@@ -37,7 +37,7 @@ class Produccion extends AppModel{
             'message' => 'Ingrese una fecha válida',
             'allowEmpty' => true
         ),
-        'faena_id' => array(
+        'faena_id' => array(//no nula
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'faena en blanco'
