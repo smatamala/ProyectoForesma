@@ -1,3 +1,17 @@
+<?php 
+if ($this->request->param('id')!=$current_user['id']){
+	?>
+	<h3>
+		<p>Usted intenta acceder a una URL no valida.</p>
+		<ul>
+			<?php echo $this->Html->link(__('Agregar Producción'), array(
+			'controller' => 'produccions', 'action' => 'add',$current_user['id']),array('class' => 'btn btn-success')); ?>
+		</ul> 
+	</h3>
+	<?php
+}else{
+
+?>
 <div class="add">
 	<?php 
 	echo $this->Form->create('Produccion');
@@ -83,4 +97,4 @@
 	<?php print_R($empleado);?>
 	<?php print_R($codigos);?>
 </pre>
-<?php } ?>
+<?php } }?>

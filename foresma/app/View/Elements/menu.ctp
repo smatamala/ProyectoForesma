@@ -64,7 +64,8 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><?php echo $this->Html->link('Resumen', array('controller' => 'produccions', 'action' => 'dashboard')) ?></li>
                   <li><?php echo $this->Html->link('Lista de Producciones', array('controller' => 'produccions', 'action' => 'index')) ?></li>
-                  <li><?php echo $this->Html->link('Agregar Produccion', array('controller' => 'produccions', 'action' => 'add')) ?></li>
+                  <li><?php echo $this->Html->link(__('Agregar Producción'), array(
+			'controller' => 'produccions', 'action' => 'add',$current_user['id'])) ?></li>
                   
                   </ul>
               </li>

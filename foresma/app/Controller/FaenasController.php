@@ -18,7 +18,7 @@ class FaenasController extends AppController{
 				}
 				else{
 					if($this->Auth->user('id')){
-						$this->Session->$this->Session->setFlash('No puede acceder', 'default', array('class'=>'alert alert-danger'));
+						$this->Session->setFlash('No puede acceder', 'default', array('class'=>'alert alert-danger'));
 						$this->redirect($this->Auth->redirect());
 					}
 				}
@@ -37,7 +37,7 @@ class FaenasController extends AppController{
 	}
 
 
-	public function view($id = null){//funcion para acceder a view.ctp
+	public function view($id = null){//funcion para acceder a view.ct
 		if (!$id){
 			$this->Session->setFlash(__('Datos invalidos'));
 			$this->redirect(array('action'=>'index'));

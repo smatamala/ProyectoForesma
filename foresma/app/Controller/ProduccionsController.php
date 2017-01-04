@@ -41,20 +41,14 @@ class ProduccionsController extends AppController{
 		return parent::isAuthorized($user);
 	}
 	
-	public function add($faena=null,$empleado=null){
+	public function add($id=null){
 		$empleados=$this->Produccion->Empleado->find('list',array('order'=>'Empleado.nombre'));
 		$this->set(compact('empleados'));
-		if($this->request->is('post')):
-			if($this->Produccion->save($this->request->data)):
-				$this->Session->setFlash('Produccion agregada');
-				$this->redirect(array('action'=>'index'));
-			endif;
-		endif;
-		
 		$maquinas=$this->Produccion->Maquina->find('list',array('order'=>'Maquina.nombre'));
 		$this->set(compact('maquinas'));
 		$this->loadModel('Faena');
-		$faenas=$this->Faena->find('list',array('order'=>'Faena.nombre'));
+		$filtrofaena=array('conditions' => array('Faena.user_id' => $id),'order'=>'Faena.nombre');
+		$faenas=$this->Faena->find('list',$filtrofaena);
 		$this->set(compact('faenas'));
 
 		$this->loadModel('Codigo');
@@ -64,6 +58,16 @@ class ProduccionsController extends AppController{
 		$this->loadModel('Insumo');
 		$insumos=$this->Insumo->find('list',array('order'=>'Insumo.nombre'));
 		$this->set('insumos',$insumos);
+		
+		if($this->request->is('post')):
+
+			if($this->Produccion->save($this->request->data)):
+				$this->Session->setFlash('Produccion agregada');
+				$this->redirect(array('action'=>'index'));
+			endif;
+		endif;
+		
+		
 	}
 	
 	public function dashboard(){

@@ -1,8 +1,8 @@
 <div class="col-md-12">
 	<h2>Producciones hasta el <?php echo date('d/m/y')?></h2>
 	<h3>
-		<ul>
-			<?php echo $this->Html->link(__('Agregar Produccion'), array('action' => 'add'),array('class' => 'btn btn-primary')); ?>
+		<ul><?php echo $this->Html->link(__('Agregar Producción'), array(
+			'controller' => 'produccions', 'action' => 'add',$current_user['id']),array('class' => 'btn btn-primary')); ?>
 		</ul> 
 	</h3>
 </div>
