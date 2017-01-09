@@ -1,6 +1,6 @@
 <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', 
 											$faena['Faena']['id'],$current_user['username']), array('class' => 'btn btn-danger'),
-													__('Estas seguro de eliminar la Faena: %s?', $faena['Faena']['nombre']));
+													__('Estas seguro de eliminar la Faena: %s? Se eliminaran todas las producciones asociadas!', $faena['Faena']['nombre']));
 		echo "  ";
 		echo $this->Html->link(__('Editar'), array('action' => 'edit',$faena['Faena']['id']),array('class' => 'btn btn-success')); 
 		?>

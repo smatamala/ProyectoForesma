@@ -33,7 +33,7 @@
 					<td class="actions">
 						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default')); ?>
 						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $faena['Faena']['id']), 
-								array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar la Faena %s?', $faena['Faena']['nombre'])); ?>
+								array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar la Faena %s? Se eliminaran todas las producciones asociadas!', $faena['Faena']['nombre'])); ?>
 					</td>
 				<?php endif; ?>
 			</tr>
