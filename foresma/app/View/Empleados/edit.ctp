@@ -1,4 +1,4 @@
-<div class="users form">
+<div class="empleados form">
 <?php echo $this->Form->create('Empleado'); ?>
 	<fieldset>
 		<legend><?php echo __('Editar Empleado'); ?></legend>

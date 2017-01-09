@@ -16,6 +16,9 @@
 			<th><?php echo $this->Paginator->sort('Jefe')?></th>
 			<th><?php echo $this->Paginator->sort('Creado')?></th>
 			<th><?php echo $this->Paginator->sort('Modificado')?></th>
+			<?php if($current_user['role'] == 'admin'):?>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
+			<?php endif; ?>
 		</tr>
 	</thead>
 		<?php foreach($faenas as $k=>$faena):?>
@@ -29,7 +32,8 @@
 				<?php if($current_user['role'] == 'admin'):?>
 					<td class="actions">
 						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default')); ?>
-						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default'), __('Are you sure you want to delete # %s?', $faena['Faena']['nombre'])); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $faena['Faena']['id']), 
+								array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar la Faena %s?', $faena['Faena']['nombre'])); ?>
 					</td>
 				<?php endif; ?>
 			</tr>
