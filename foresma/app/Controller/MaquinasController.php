@@ -8,7 +8,7 @@ class MaquinasController extends AppController {
 		'order' => array('Maquina.nombre'=>'asc'),
 		);
 	
-	public function isAuthorized($user=null){
+	public function isAuthorized($user=null){//solo permite al usuario de tipo user acceder a index y view
 		if($user['role']=='user'){
 			if(in_array($this->action,array('index','view'))){
 				return true;
@@ -21,14 +21,14 @@ class MaquinasController extends AppController {
 		return parent::isAuthorized($user);
 	}
 	
-	public function index() {
+	public function index() {//funcion para acceder a index.ctp 
 		$this->Paginator->settings = $this->paginate;
 		$this->Maquina->recursive = 0;
 		$this->set('maquinas', $this->Paginator->paginate());
 	}
 	
 	public function add() {
-		if ($this->request->is('post')) {
+		if ($this->request->is('post')) {//funcion para acceder a add.ctp 
 			$this->Maquina->create();
 			if ($this->Maquina->save($this->request->data)) {
 				$this->Session->setFlash(__('Maquina guardada'));

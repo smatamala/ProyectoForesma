@@ -11,13 +11,13 @@ class ProduccionsController extends AppController{
 
 
 	
-	public function index(){
+	public function index(){//funcion para acceder a index.ctp 
         $this->Paginator->settings = $this->paginate;
 		$this->Produccion->recursive=0;
 		$this->set('produccions',$this->Paginator->paginate());
 	}
 	
-	public function isAuthorized($user=null){
+	public function isAuthorized($user=null){//solo permite al usuario de tipo user acceder a add index y view
 		if($user['role']=='user'){
 			if(in_array($this->action,array('add','index','view'))){
 				return true;
@@ -41,7 +41,7 @@ class ProduccionsController extends AppController{
 		return parent::isAuthorized($user);
 	}
 	
-	public function add($id=null){
+	public function add($id=null){//funcion para acceder a add.ctp que trae datos de otras tablas
 		$empleados=$this->Produccion->Empleado->find('list',array('order'=>'Empleado.nombre'));
 		$this->set(compact('empleados'));
 		$maquinas=$this->Produccion->Maquina->find('list',array('order'=>'Maquina.nombre'));
@@ -73,7 +73,7 @@ class ProduccionsController extends AppController{
 				
 			}}
 	
-	public function dashboard(){
+	public function dashboard(){//funcion para acceder a dashboar.ctp que muestra resumen de datos mensulaes
         $this->Paginator->settings = $this->paginate;
 		$this->Produccion->recursive=0;
 		$this->set('produccions',$this->Paginator->paginate());
@@ -85,7 +85,7 @@ class ProduccionsController extends AppController{
 		$this->set(compact('empleados'));
 	}
 	
-	public function view($id = null){
+	public function view($id = null){//funcion para acceder a view.ctp muestra datos de cada produccion 
 		if (!$id){
 			throw new NotFoundException('Datos Invalidos');
 		}
@@ -101,7 +101,7 @@ class ProduccionsController extends AppController{
 		
 	}
 	
-	public function delete($id = null,$username = null) {
+	public function delete($id = null,$username = null) {//funcion para eliminar producciones 
 		function write_log($cadena){
 			$arch = fopen("../../logs/deletes".".txt", "a+"); //date("Y-m-d"). define hora en archivo
 		
@@ -123,7 +123,7 @@ class ProduccionsController extends AppController{
 		return $this->redirect(array('action' => 'index'));
 	}
 	
-	public function edit($id = null) {
+	public function edit($id = null) {//funcion para acceder a edit.ctp 
 		if (!$this->Produccion->exists($id)) {
 			throw new NotFoundException(__('Invalid Produccion'));
 		}

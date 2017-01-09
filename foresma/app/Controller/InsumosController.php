@@ -11,7 +11,7 @@ class InsumosController extends AppController {
 
 	public $components = array('Paginator', 'Session');
 
- 	public function isAuthorized($user=null){
+ 	public function isAuthorized($user=null){//permisos de acceso solo a index y view para user
 		if($user['role']=='user'){
 			if(in_array($this->action,array('index','view'))){
 				return true;
@@ -24,12 +24,12 @@ class InsumosController extends AppController {
 			}
 		return parent::isAuthorized($user);
 	}
-	public function index() {
+	public function index() {//funcion para acceder a indes.ctp
 		$this->Insumo->recursive = 0;
 		$this->set('insumos', $this->Paginator->paginate());
 	}
 
-	public function add() {
+	public function add() {//funcion para acceder a add.ctp
 		if ($this->request->is('post')) {
 			$this->Insumo->create();
 			if ($this->Insumo->save($this->request->data)) {

@@ -36,7 +36,7 @@ class UsersController extends AppController {
 		return $this->redirect($this->Auth->logout());
 	}
 	
-	public function isAuthorized($user=null){
+	public function isAuthorized($user=null){//da acceso al usuario cuando ingresa la clave
 		if($user['role']=='user'){
 			if(in_array($this->action,array())){
 				return true;
