@@ -56,6 +56,53 @@ class FaenasController extends AppController{
 		
 		
 	}
+	public function edit($id = null) {
+		if (!$this->Faena->exists($id)) {
+			throw new NotFoundException(__('Faena no existe!!!'));
+		}
+		$this->Faena->id=$id;
+		$users=$this->Faena->User->find('list',array('order'=>'User.username'));
+		$this->set(compact('users'));
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Faena->read();
+			
+		}
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Faena->save($this->request->data)) {
+				$this->Session->setFlash(__('Faena guardado.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+			}
+		} else {
+			$options = array('conditions' => array('Faena.' . $this->Faena->primaryKey => $id));
+			$this->request->data = $this->Faena->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Faena->id = $id;
+		if (!$this->Faena->exists()) {
+			throw new NotFoundException(__('Faena no existe'));
+		}
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este Faena, contacta al programador!! '));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Faena->delete()) {
+			$this->Session->setFlash(__('Faena eliminado.'));
+		} else {
+			$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 	
 
 }

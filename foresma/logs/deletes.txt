@@ -3,3 +3,4 @@
 [2016-12-07 04:05:50 10.240.0.207  - Elimino produccion ] usuario: elimino: 5 
 [2016-12-07 04:07:12 10.240.0.110  - Elimino produccion ] usuario: elimino: 7 
 [2016-12-07 04:08:28 10.240.0.206  - Elimino produccion ] usuario:admin elimino: 8 
+[2017-01-09 19:22:52 10.240.1.19  - Elimino produccion ] usuario:admin elimino: 17 

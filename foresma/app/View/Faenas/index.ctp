@@ -26,6 +26,12 @@
 				<td><?php echo h($users[$faena['Faena']['user_id']]);?></td>
 				<td><?php echo h($faena['Faena']['created']);?></td>
 				<td><?php echo h($faena['Faena']['modified']);?></td>
+				<?php if($current_user['role'] == 'admin'):?>
+					<td class="actions">
+						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default')); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default'), __('Are you sure you want to delete # %s?', $faena['Faena']['nombre'])); ?>
+					</td>
+				<?php endif; ?>
 			</tr>
 			<?php endforeach;?>
 	</table>
