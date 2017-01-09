@@ -68,5 +68,5 @@
 			</tr>
 		</table>
 	</fieldset>
-	<?php echo $this->Form->end('Agregar produccion');?>
+	<?php echo $this->Form->end('Guardar produccion');?>
 </div>

@@ -26,7 +26,13 @@
 				<td><?php echo $this->Html->link($faena['Faena']['nombre'],array('controller' =>'faenas',
 											'action'=> 'view',
 										 	$faena['Faena']['id']));?></td>
-				<td><?php echo h($users[$faena['Faena']['user_id']]);?></td>
+				<td><?php 
+				if(isset($users[$faena['Faena']['user_id']])){
+						echo $users[$faena['Faena']['user_id']];
+				}else{
+					echo $this->Html->link(__('Usuario no existe, Editar Faena'), array('action' => 'edit', $faena['Faena']['id']), array('class' => 'btn btn-sm btn-default'));
+				}?></td>
+				
 				<td><?php echo h($faena['Faena']['created']);?></td>
 				<td><?php echo h($faena['Faena']['modified']);?></td>
 				<?php if($current_user['role'] == 'admin'):?>

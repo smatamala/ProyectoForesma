@@ -34,7 +34,7 @@
 				<?php if($current_user['role'] == 'admin'):?>
 					<td class="actions">
 						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-sm btn-default')); ?>
-						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-sm btn-default'), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar a %s?', $user['User']['username'])); ?>
 					</td>
 				<?php endif; ?>
 
