@@ -16,6 +16,9 @@
 			<th><?php echo $this->Paginator->sort('Año')?></th>
 			<th><?php echo $this->Paginator->sort('descripcion')?></th>
 			<th><?php echo $this->Paginator->sort('Modificado')?></th>
+			<?php if($current_user['role'] == 'admin'):?>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
+			<?php endif; ?>
 		</tr>
 	</thead>
 		<?php foreach($maquinas as $k=>$maquina):?>
@@ -24,6 +27,12 @@
 				<td><?php echo h($maquina['Maquina']['ano']);?></td>
 				<td><?php echo h($maquina['Maquina']['descripcion']);?></td>
 				<td><?php echo h($maquina['Maquina']['modified']);?></td>
+				<?php if($current_user['role'] == 'admin'):?>
+					<td class="actions">
+						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $maquina['Maquina']['id']), array('class' => 'btn btn-sm btn-default')); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $maquina['Maquina']['id']), array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar la Maquina %s?', $maquina['Maquina']['nombre'])); ?>
+					</td>
+				<?php endif; ?>
 			</tr>
 			<?php endforeach;?>
 	</table>
