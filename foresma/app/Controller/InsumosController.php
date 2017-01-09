@@ -40,4 +40,50 @@ class InsumosController extends AppController {
 			}
 		}
 	}
+	
+	public function edit($id = null) {
+		if (!$this->Insumo->exists($id)) {
+			throw new NotFoundException(__('Insumo no existe!!!'));
+		}
+		$this->Insumo->id=$id;
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Insumo->read();
+			
+		}
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Insumo->save($this->request->data)) {
+				$this->Session->setFlash(__('Insumo guardado.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+			}
+		} else {
+			$options = array('conditions' => array('Insumo.' . $this->Insumo->primaryKey => $id));
+			$this->request->data = $this->Insumo->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Insumo->id = $id;
+		if (!$this->Insumo->exists()) {
+			throw new NotFoundException(__('Insumo no existe'));
+		}
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este Insumo, contacta al programador!! '));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Insumo->delete()) {
+			$this->Session->setFlash(__('Insumo eliminado.'));
+		} else {
+			$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 }

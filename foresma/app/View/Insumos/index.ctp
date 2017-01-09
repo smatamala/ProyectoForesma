@@ -15,6 +15,9 @@
 			<th><?php echo $this->Paginator->sort('Nombre ')?></th>
 			<th><?php echo $this->Paginator->sort('descripcion')?></th>
 			<th><?php echo $this->Paginator->sort('Modificado')?></th>
+			<?php if($current_user['role'] == 'admin'):?>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
+			<?php endif; ?>
 		</tr>
 	</thead>
 		<?php foreach($insumos as $k=>$insumo):?>
@@ -22,6 +25,14 @@
 				<td><?php echo h($insumo['Insumo']['nombre']);?></td>
 				<td><?php echo h($insumo['Insumo']['descripcion']);?></td>
 				<td><?php echo h($insumo['Insumo']['modified']);?></td>
+				<?php if($current_user['role'] == 'admin'):?>
+					<td class="actions">
+						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $insumo['Insumo']['id']), array('class' => 'btn btn-sm btn-default')); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $insumo['Insumo']['id']), 
+						array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar el Insumo %s?', $insumo['Insumo']['nombre'])); 
+						?>
+				</td>
+				<?php endif; ?>
 			</tr>
 			<?php endforeach;?>
 	</table>
