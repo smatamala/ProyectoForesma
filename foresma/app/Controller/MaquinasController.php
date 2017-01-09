@@ -38,5 +38,54 @@ class MaquinasController extends AppController {
 			}
 		}
 	}
+	
+	public function edit($id = null) {
+		if (!$this->Maquina->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($id==14) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$this->Maquina->id=$id;
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Maquina->read();
+			
+		}
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Maquina->save($this->request->data)) {
+				$this->Session->setFlash(__('Maquina guardado.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+			}
+		} else {
+			$options = array('conditions' => array('Maquina.' . $this->Maquina->primaryKey => $id));
+			$this->request->data = $this->Maquina->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Maquina->id = $id;
+		if (!$this->Maquina->exists()) {
+			throw new NotFoundException(__('Maquina no existe'));
+		}
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este Maquina, contacta al programador!! '));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Maquina->delete()) {
+			$this->Session->setFlash(__('Maquina eliminado.'));
+		} else {
+			$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 }
 
