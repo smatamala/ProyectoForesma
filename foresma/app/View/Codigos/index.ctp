@@ -15,6 +15,9 @@
 			<th><?php echo $this->Paginator->sort('Nombre ')?></th>
 			<th><?php echo $this->Paginator->sort('descripcion')?></th>
 			<th><?php echo $this->Paginator->sort('Modificado')?></th>
+			<?php if($current_user['role'] == 'admin'):?>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
+			<?php endif; ?>
 		</tr>
 	</thead>
 		<?php foreach($codigos as $k=>$codigo):?>
@@ -22,6 +25,14 @@
 				<td><?php echo h($codigo['Codigo']['codigo']);?></td>
 				<td><?php echo h($codigo['Codigo']['descripcion']);?></td>
 				<td><?php echo h($codigo['Codigo']['modified']);?></td>
+				<?php if($current_user['role'] == 'admin'):?>
+					<td class="actions">
+						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $codigo['Codigo']['id']), array('class' => 'btn btn-sm btn-default')); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $codigo['Codigo']['id']), 
+						array('class' => 'btn btn-sm btn-default'), __('Estas seguro de eliminar el Codigo %s?', $codigo['Codigo']['codigo'])); 
+						?>
+					</td>
+				<?php endif; ?>
 			</tr>
 			<?php endforeach;?>
 	</table>

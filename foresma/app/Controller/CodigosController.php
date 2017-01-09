@@ -41,4 +41,51 @@ class CodigosController extends AppController {
 			}
 		}
 	}
+	
+	public function edit($id = null) {
+		if (!$this->Codigo->exists($id)) {
+			throw new NotFoundException(__('Codigo no existe!!!'));
+		}
+		$this->Codigo->id=$id;
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Codigo->read();
+			
+		}
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Codigo->save($this->request->data)) {
+				$this->Session->setFlash(__('Codigo guardado.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+			}
+		} else {
+			$options = array('conditions' => array('Codigo.' . $this->Codigo->primaryKey => $id));
+			$this->request->data = $this->Codigo->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Codigo->id = $id;
+		if (!$this->Codigo->exists()) {
+			throw new NotFoundException(__('Codigo no existe'));
+		}
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este Codigo, contacta al programador!! '));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Codigo->delete()) {
+			$this->Session->setFlash(__('Codigo eliminado.'));
+		} else {
+			$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+	
 }
