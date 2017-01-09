@@ -1,7 +1,7 @@
 <div class="col-md-20">
 <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', 
 											$produccion['Produccion']['id'],$current_user['username']), array('class' => 'btn btn-danger'),
-													__('Estas seguro de eliminar la Faena: %s?', $produccion['Produccion']['id']));
+													__('Estas seguro de eliminar la Faena: %s? Se eliminaran todas las producciones asociadas!', $produccion['Produccion']['id']));
 		echo "  ";
 		echo $this->Html->link(__('Editar'), array('action' => 'edit',$produccion['Produccion']['id']),array('class' => 'btn btn-success')); 
 		?>
