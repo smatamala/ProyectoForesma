@@ -48,12 +48,61 @@ class EmpleadosController extends AppController{
 		$faenas= $this->Faena->find('list');
 		if (!$empleado)
 		{
-			throw new NotFoundException('El empleado no existe');
+			throw new NotFoundException('El Empleado no existe');
 		}
 
 		$this->set('empleado', $empleado,$this->Paginator->paginate());
 		$this->set('faenas',$faenas);
 		$this->set('id',$id);
+	}
+	
+		public function edit($id = null) {
+		if (!$this->Empleado->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($id==14) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$this->Empleado->id=$id;
+		if ($this->request->is('get')) {
+			$this->request->data= $this->Empleado->read();
+			
+		}
+		else if ($this->request->is(array('post', 'put'))) {
+			if ($this->Empleado->save($this->request->data)) {
+				$this->Session->setFlash(__('Empleado guardado.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+			}
+		} else {
+			$options = array('conditions' => array('Empleado.' . $this->Empleado->primaryKey => $id));
+			$this->request->data = $this->Empleado->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Empleado->id = $id;
+		if (!$this->Empleado->exists()) {
+			throw new NotFoundException(__('Empleado no existe'));
+		}
+		if ($id==1) {
+			throw new NotFoundException(__('No puede eliminar a este Empleado, contacta al programador!! '));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Empleado->delete()) {
+			$this->Session->setFlash(__('Empleado eliminado.'));
+		} else {
+			$this->Session->setFlash(__('Error!!. Vuelva a intentar.'));
+		}
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

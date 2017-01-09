@@ -17,6 +17,10 @@
 			<th><?php echo $this->Paginator->sort('tel','Telefono')?></th>
 			<th><?php echo $this->Paginator->sort('especialidad','Especialidad')?></th>
 			<th><?php echo $this->Paginator->sort('modified','Modificado')?></th>
+			<?php if($current_user['role'] == 'admin'):?>
+				<th class="actions"><?php echo __('Opciones'); ?></th>
+			<?php endif; ?>
+	</tr>
 		
 		</tr>
 		</thead>
@@ -29,6 +33,12 @@
 				<td><?php echo h($empleado['Empleado']['tel']);?></td>
 				<td><?php echo h($empleado['Empleado']['especialidad']);?></td>
 				<td><?php echo h($empleado['Empleado']['modified']);?></td>
+				<?php if($current_user['role'] == 'admin'):?>
+					<td class="actions">
+						<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $empleado['Empleado']['id']), array('class' => 'btn btn-sm btn-default')); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $empleado['Empleado']['id']), array('class' => 'btn btn-sm btn-default'), __('Are you sure you want to delete # %s?', $empleado['Empleado']['nombre'])); ?>
+					</td>
+				<?php endif; ?>
 			</tr>
 			<?php }?>
 	</table>
